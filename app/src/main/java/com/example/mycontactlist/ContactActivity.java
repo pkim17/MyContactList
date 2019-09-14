@@ -1,12 +1,8 @@
 package com.example.mycontactlist;
 
 import android.content.Intent;
-//import android.support.v4.app.FragmentActivity;
-//import android.support.v4.app.FragmentManager;
-//import androidx.support.v4.app.FragmentActivity;
-//import androidx.support.v4.app.FragmentManager;
+
 import androidx.fragment.app.FragmentManager;
-//import android.support.v7.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatActivity;;
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -17,8 +13,6 @@ import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
-import android.widget.DatePicker;
-import android.text.format.DateFormat;
 
 
 
