@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Peter App</string>
+    <string name="ToggleButtonEdit">Edit</string>
+    <string name="ButtonSave">Save</string>
+    <string name="textContact">Contact:</string>
+    <string name="textAddress">Address:</string>
+    <string name="textHomePhone">Home Phone:</string>
+    <string name="textCellPhone">Cell Phone:</string>
+    <string name="textEmail">Email:</string>
+    <string name="textBirthday">Birthday:</string>
+    <string name="buttonCancel">Cancel</string>
+    <string name="buttonSelect">Select</string>
+
+    <!--    <string name="contact_icon">Contacts</string>-->
+<!--    <string name="settings_icon">Settings</string>-->
+<!--    <string name="map">Map</string>-->
+<!--    <string name="save_button">Save</string>-->
+<!--    <string name="contact">Contact:</string>-->
+<!--    <string name="address">Address:</string>-->
+<!--    <string name="home_phone">Home Phone:</string>-->
+<!--    <string name="cell_phone">Cell Phone:</string>-->
+<!--    <string name="toggle_button">Toggle Button</string>-->
+<!--    <string name="email">EMail:</string>-->
+<!--    <string name="birthday">Birthday:</string>-->
+
+</resources>

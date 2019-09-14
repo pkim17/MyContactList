@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="navbar_background">#1a1a48</color>
+    <color name="toolbar_background">#bebebe</color>
+    <color name="dialog_button_color">#26c6da</color>
+    <color name="exercise_background_color">#f0f8ff</color>
+
+
+</resources>
