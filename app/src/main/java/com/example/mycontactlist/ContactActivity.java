@@ -316,6 +316,7 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
             @Override
             public void onClick(View view) {
                 hideKeyboard();
+                setForEditing(false);
                 boolean wasSuccessful = false;
                 ContactDataSource ds = new ContactDataSource(ContactActivity.this);
                 try {
@@ -352,17 +353,17 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
         EditText editAddress = (EditText) findViewById(R.id.editAddress);
         imm.hideSoftInputFromWindow(editAddress.getWindowToken(), 0);
         EditText editCity = (EditText) findViewById(R.id.editCity);
-        imm.hideSoftInputFromWindow(editAddress.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(editCity.getWindowToken(), 0);
         EditText editState = (EditText) findViewById(R.id.editState);
-        imm.hideSoftInputFromWindow(editAddress.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(editState.getWindowToken(), 0);
         EditText editZipcode = (EditText) findViewById(R.id.editZipcode);
-        imm.hideSoftInputFromWindow(editAddress.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(editZipcode.getWindowToken(), 0);
         EditText editHome = (EditText) findViewById(R.id.editHome);
-        imm.hideSoftInputFromWindow(editAddress.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(editHome.getWindowToken(), 0);
         EditText editCell = (EditText) findViewById(R.id.editCell);
-        imm.hideSoftInputFromWindow(editAddress.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(editCell.getWindowToken(), 0);
         EditText editEmail = (EditText) findViewById(R.id.editEmail);
-        imm.hideSoftInputFromWindow(editAddress.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(editEmail.getWindowToken(), 0);
 
 
     }
