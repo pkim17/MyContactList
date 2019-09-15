@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 
 
 public class ContactSettingsActivity extends AppCompatActivity {
@@ -24,6 +25,11 @@ public class ContactSettingsActivity extends AppCompatActivity {
         initSettings();
         initSortByClick();
         initSortOrderClick();
+
+//        Exercise5.1
+        ScrollView s = (ScrollView) findViewById(R.id.ScrollViewSettings);
+        s.setBackgroundResource(R.color.exercise_radio_color1);
+
     }
 
     private void initListButton() {
@@ -86,6 +92,8 @@ public class ContactSettingsActivity extends AppCompatActivity {
         else {
             rbDescending.setChecked(true);
         }
+
+
 
 
     }

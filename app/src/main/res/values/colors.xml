@@ -8,5 +8,10 @@
     <color name="dialog_button_color">#26c6da</color>
     <color name="exercise_background_color">#f0f8ff</color>
 
+    <color name="exercise_radio_color1">#ffdfe5</color>
+    <color name="exercise_radio_color2">#7dae94</color>
+    <color name="exercise_radio_color3">#c39797</color>
+
+
 
 </resources>
