@@ -10,7 +10,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.DatePicker;
 
-
 public class DatePickerDialog extends DialogFragment {
 
     public interface SaveDateListener {

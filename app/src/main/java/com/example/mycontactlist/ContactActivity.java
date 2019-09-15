@@ -2,7 +2,6 @@ package com.example.mycontactlist;
 
 import android.content.Context;
 import android.content.Intent;
-
 import androidx.fragment.app.FragmentManager;
 import androidx.appcompat.app.AppCompatActivity;;
 import android.os.Bundle;
@@ -18,10 +17,6 @@ import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
-
-
-
-
 import java.util.Calendar;
 
 public class ContactActivity extends AppCompatActivity implements DatePickerDialog.SaveDateListener {
