@@ -6,9 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".ContactMapActivity">
 
+    <!--    Navigation Bar-->
     <RelativeLayout
+        android:id="@+id/navbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/navbar_background"
         android:layout_alignParentBottom="true" >
 
@@ -17,37 +19,33 @@
             android:id="@+id/imageButtonList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/icons8_contact_details_64"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/imageButtonMap"
-            android:layout_toStartOf="@+id/imageButtonMap"
-            android:layout_marginRight="20dp"
             android:layout_marginEnd="20dp"
-
-            />
+            android:layout_marginRight="20dp"
+            android:layout_toStartOf="@+id/imageButtonMap"
+            android:layout_toLeftOf="@+id/imageButtonMap"
+            app:srcCompat="@drawable/icons8_contact_details_64" />
 
         <ImageButton
             android:id="@+id/imageButtonMap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/icons8_map_marker_64"
+            android:layout_centerInParent="true"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-
-            />
+            app:srcCompat="@drawable/icons8_map_marker_64" />
 
         <ImageButton
             android:id="@+id/imageButtonSettings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
             android:layout_toEndOf="@+id/imageButtonMap"
             android:layout_toRightOf="@+id/imageButtonMap"
-
-
             app:srcCompat="@drawable/icons8_settings_64" />
+
     </RelativeLayout>
 
 

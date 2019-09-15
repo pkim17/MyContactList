@@ -6,9 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".ContactSettingsActivity">
 
+    <!--    Navigation Bar-->
     <RelativeLayout
+        android:id="@+id/navbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/navbar_background"
         android:layout_alignParentBottom="true" >
 
@@ -17,38 +19,121 @@
             android:id="@+id/imageButtonList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/icons8_contact_details_64"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/imageButtonMap"
-            android:layout_toStartOf="@+id/imageButtonMap"
-            android:layout_marginRight="20dp"
             android:layout_marginEnd="20dp"
-
-            />
+            android:layout_marginRight="20dp"
+            android:layout_toStartOf="@+id/imageButtonMap"
+            android:layout_toLeftOf="@+id/imageButtonMap"
+            app:srcCompat="@drawable/icons8_contact_details_64" />
 
         <ImageButton
             android:id="@+id/imageButtonMap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/icons8_map_marker_64"
+            android:layout_centerInParent="true"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-
-            />
+            app:srcCompat="@drawable/icons8_map_marker_64" />
 
         <ImageButton
             android:id="@+id/imageButtonSettings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
             android:layout_toEndOf="@+id/imageButtonMap"
             android:layout_toRightOf="@+id/imageButtonMap"
-
-
             app:srcCompat="@drawable/icons8_settings_64" />
+
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textContactSort"
+        android:text="@string/textContactSort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupSortBy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textContactSort"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="35dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="10dp" >
+
+        <RadioButton
+            android:id="@+id/radioName"
+            android:text="@string/radioName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:id="@+id/radioCity"
+            android:text="@string/radioCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:id="@+id/radioBirthday"
+            android:text="@string/radioBirthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textViewSortOrder"
+        android:text="@string/textViewSortOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/radioGroupSortBy"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupSortOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewSortOrder"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="35dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="10dp" >
+
+        <RadioButton
+        android:id="@+id/radioAscending"
+        android:text="@string/radioAscending"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+        <RadioButton
+            android:id="@+id/radioDescending"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radioDescending"
+            android:layout_weight="1" />
+
+    </RadioGroup>
 
 
 </RelativeLayout>

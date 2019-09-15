@@ -2,14 +2,31 @@
     <string name="app_name">Peter App</string>
     <string name="ToggleButtonEdit">Edit</string>
     <string name="ButtonSave">Save</string>
+
+<!--    Fields-->
     <string name="textContact">Contact:</string>
     <string name="textAddress">Address:</string>
     <string name="textHomePhone">Home Phone:</string>
     <string name="textCellPhone">Cell Phone:</string>
     <string name="textEmail">Email:</string>
     <string name="textBirthday">Birthday:</string>
+
+<!--    Date Picker-->
     <string name="buttonCancel">Cancel</string>
     <string name="buttonSelect">Select</string>
+
+<!--    Setting labels-->
+    <string name="textContactSort">Sort Contacts By:</string>
+    <string name="textViewSortOrder">Sort Order:</string>
+
+<!--    Radio Buttons-->
+    <string name="radioName">Name</string>
+    <string name="radioCity">City</string>
+    <string name="radioBirthday">Birthday</string>
+    <string name="radioAscending">Ascending</string>
+    <string name="radioDescending">Descending</string>
+
+
 
     <!--    <string name="contact_icon">Contacts</string>-->
 <!--    <string name="settings_icon">Settings</string>-->
