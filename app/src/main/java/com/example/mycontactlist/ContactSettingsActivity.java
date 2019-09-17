@@ -23,10 +23,11 @@ public class ContactSettingsActivity extends AppCompatActivity {
         initSettings();
         initSortByClick();
         initSortOrderClick();
+        initSetColor();
 
-//        Exercise5.1
-        ScrollView s = (ScrollView) findViewById(R.id.ScrollViewSettings);
-        s.setBackgroundResource(R.color.exercise_radio_color1);
+//        Set default color initially
+//        ScrollView s = (ScrollView) findViewById(R.id.ScrollViewSettings);
+//        s.setBackgroundResource(R.color.exercise_radio_color1);
 
     }
 
@@ -64,6 +65,8 @@ public class ContactSettingsActivity extends AppCompatActivity {
                 .getString("sortfield","contactname");
         String sortOrder = getSharedPreferences("MyContactListPreferences", Context.MODE_PRIVATE)
                 .getString("sortorder","ASC");
+        String setColor = getSharedPreferences("MyContactListPreferences", Context.MODE_PRIVATE)
+                .getString("setcolor","pink");
 
 
         RadioButton rbName = (RadioButton) findViewById(R.id.radioName);
@@ -90,6 +93,29 @@ public class ContactSettingsActivity extends AppCompatActivity {
         else {
             rbDescending.setChecked(true);
         }
+
+//        If a certain color is selected, apply that color when user enters page
+        RadioButton rbPink = (RadioButton) findViewById(R.id.radioSetColorPink);
+        RadioButton rbGold = (RadioButton) findViewById(R.id.radioSetColorGold);
+        RadioButton rbLightPurple = (RadioButton) findViewById(R.id.radioSetColorLightPurple);
+        ScrollView s = (ScrollView) findViewById(R.id.ScrollViewSettings);
+
+        if (setColor.equalsIgnoreCase("pink")) {
+            rbPink.setChecked(true);
+            s.setBackgroundResource(R.color.exercise_radio_color_pink);
+        }
+        else if (setColor.equalsIgnoreCase("gold")) {
+            rbGold.setChecked(true);
+            s.setBackgroundResource(R.color.exercise_radio_color_gold);
+
+        }
+        else {
+            rbLightPurple.setChecked(true);
+            s.setBackgroundResource(R.color.exercise_radio_color_light_purple);
+
+        }
+
+
 
 
 
@@ -147,6 +173,51 @@ public class ContactSettingsActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+
+//    Exercise 5.1
+//    Applying background color of the RadioButton selected
+    private void initSetColor()  {
+
+
+        final ScrollView s = (ScrollView) findViewById(R.id.ScrollViewSettings);
+
+        RadioGroup rgSetColor = (RadioGroup) findViewById(R.id.RadioGroupSetColor);
+        rgSetColor.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup arg0, int arg1) {
+                RadioButton rbPink = (RadioButton) findViewById(R.id.radioSetColorPink);
+                RadioButton rbGold = (RadioButton) findViewById(R.id.radioSetColorGold);
+                RadioButton rbLightPurple = (RadioButton) findViewById(R.id.radioSetColorLightPurple);
+
+//                Inserts selected color preference into getSharedPreferences for next time
+//                Also, sets color as buttons are clicked
+
+                if (rbPink.isChecked()) {
+                    getSharedPreferences("MyContactListPreferences",
+                            Context.MODE_PRIVATE).edit()
+                            .putString("setcolor", "pink").commit();
+                    s.setBackgroundResource(R.color.exercise_radio_color_pink);
+                }
+                else if (rbGold.isChecked())    {
+                    getSharedPreferences("MyContactListPreferences",
+                            Context.MODE_PRIVATE).edit()
+                            .putString("setcolor", "gold").commit();
+                    s.setBackgroundResource(R.color.exercise_radio_color_gold);
+                }
+                else {
+                    getSharedPreferences("MyContactListPreferences",
+                            Context.MODE_PRIVATE).edit()
+                            .putString("setcolor", "lightpurple").commit();
+                    s.setBackgroundResource(R.color.exercise_radio_color_light_purple);
+                }
+
+            }
+        });
+
+
     }
 
 

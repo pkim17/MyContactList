@@ -12,6 +12,10 @@
     <color name="exercise_radio_color2">#7dae94</color>
     <color name="exercise_radio_color3">#c39797</color>
 
+    <color name="exercise_radio_color_pink">#f7347a</color>
+    <color name="exercise_radio_color_gold">#eda803</color>
+    <color name="exercise_radio_color_light_purple">#dfe2ff</color>
+
 
 
 </resources>

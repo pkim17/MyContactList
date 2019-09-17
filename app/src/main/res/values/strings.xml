@@ -18,6 +18,7 @@
 <!--    Setting labels-->
     <string name="textContactSort">Sort Contacts By:</string>
     <string name="textViewSortOrder">Sort Order:</string>
+    <string name="textSetColor">Sort Order:</string>
 
 <!--    Radio Buttons-->
     <string name="radioName">Name</string>
@@ -25,6 +26,10 @@
     <string name="radioBirthday">Birthday</string>
     <string name="radioAscending">Ascending</string>
     <string name="radioDescending">Descending</string>
+    <string name="radioColorPink">Pink</string>
+    <string name="radioColorGold">Gold</string>
+    <string name="radioColorLightPurple">Light Purple</string>
+
 
 
 

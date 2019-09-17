@@ -89,11 +89,11 @@ public class ContactDataSource {
 //    Exercise5.2
 //    Not sure.. Still working on it
 //
-//    public boolean onlyUpdateAddress(Contact c) {
+//    public void onlyUpdateAddress(Contact c) {
 //        boolean didSucceed = false;
 //
-//        ContentValues updateVaules = new ContentValues();
+//        ContentValues updateValues = new ContentValues();
 //
-//        updateVaules.put("streetaddress", c.getStreetAddress());
+//        updateValues.put("streetaddress", c.getStreetAddress());
 //    }
 }

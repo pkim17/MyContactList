@@ -120,6 +120,7 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
         birthDay.setText(DateFormat.format("MM/dd/yyyy", selectedTime.getTimeInMillis()).toString());
         currentContact.setBirthday(selectedTime);
     }
+
     private void initChangeDateButton() {
         Button changeDate = (Button) findViewById(R.id.btnBirthday);
         changeDate.setOnClickListener(new View.OnClickListener() {
