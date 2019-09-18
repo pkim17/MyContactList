@@ -11,11 +11,11 @@ public class ContactDataSource {
     private SQLiteDatabase database;
     private ContactDBHelper dbHelper;
 
-    public ContactDataSource(Context context)   {
+    public ContactDataSource(Context context) {
         dbHelper = new ContactDBHelper(context);
     }
 
-    public void open() throws SQLException  {
+    public void open() throws SQLException {
         database = dbHelper.getWritableDatabase();
     }
 
@@ -38,8 +38,7 @@ public class ContactDataSource {
             initialValues.put("email", c.geteMail());
             initialValues.put("birthday", String.valueOf(c.getBirthday().getTimeInMillis()));
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             //Do nothing - Will return false if there is an exception
         }
         return didSucceed;
@@ -62,15 +61,14 @@ public class ContactDataSource {
             updateValues.put("birthday", String.valueOf(c.getBirthday().getTimeInMillis()));
 
             didSucceed = database.update(
-                    "contact", updateValues, "_id=" + rowId, null) >0;
-        }
-        catch (Exception e) {
+                    "contact", updateValues, "_id=" + rowId, null) > 0;
+        } catch (Exception e) {
             //Do nothing - Will return false if there is an exception
         }
         return didSucceed;
     }
 
-    public int getLastContactId()   {
+    public int getLastContactId() {
         int lastId = -1;
         try {
             String query = "Select MAX(_id) from contact";
@@ -79,21 +77,33 @@ public class ContactDataSource {
             cursor.moveToFirst();
             lastId = cursor.getInt(0);
             cursor.close();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             lastId = -1;
         }
         return lastId;
     }
 
 //    Exercise5.2
-//    Not sure.. Still working on it
-//
-//    public void onlyUpdateAddress(Contact c) {
-//        boolean didSucceed = false;
-//
-//        ContentValues updateValues = new ContentValues();
-//
-//        updateValues.put("streetaddress", c.getStreetAddress());
-//    }
+//    Only update Address
+
+    public boolean onlyUpdateAddress(Contact c) {
+        boolean didSucceed = false;
+
+
+        try {
+            Long rowId = (long) c.getContactID();
+            ContentValues updateValues = new ContentValues();
+
+            updateValues.put("streetaddress", c.getStreetAddress());
+            updateValues.put("city", c.getCity());
+            updateValues.put("state", c.getState());
+            updateValues.put("zipcode", c.getZipCode());
+
+            didSucceed = database.update(
+                    "contact", updateValues, "_id=" + rowId, null) > 0;
+        } catch (Exception e) {
+            //Do nothing - Will return false if there is an exception
+        }
+        return didSucceed;
+    }
 }

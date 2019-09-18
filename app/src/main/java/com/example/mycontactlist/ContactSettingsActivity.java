@@ -25,9 +25,6 @@ public class ContactSettingsActivity extends AppCompatActivity {
         initSortOrderClick();
         initSetColor();
 
-//        Set default color initially
-//        ScrollView s = (ScrollView) findViewById(R.id.ScrollViewSettings);
-//        s.setBackgroundResource(R.color.exercise_radio_color1);
 
     }
 
