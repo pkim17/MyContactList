@@ -36,6 +36,7 @@
     <string name="textContactName">Contact Name</string>
     <string name="textHomeNumber">Home Phone</string>
     <string name="textCellNumber">Cell Phone</string>
+    <string name="textListAddress">Address</string>
     <string name="textButtonDeleteContact">Delete</string>
 
 <!--Contact List Button Label-->

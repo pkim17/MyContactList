@@ -66,11 +66,18 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
 
             TextView contactName = (TextView) v.findViewById(R.id.textContactName);
             contactName.setText(contact.getContactName());
+
+//            Exercise 6.3 to display Address
+            TextView contactAddress = (TextView) v.findViewById(R.id.textListAddress);
+            contactAddress.setText(contact.getStreetAddress() + " " + contact.getCity() + " "
+                    + contact.getState() + " " + contact.getZipCode());
+
 //            Exercise 6.1 Display Home: # and Cell: #
             TextView contactHomeNumber = (TextView) v.findViewById(R.id.textHomeNumber);
             TextView contactCellNumber = (TextView) v.findViewById(R.id.textCellNumber);
             contactHomeNumber.setText("Home: " + contact.getPhoneNumber());
             contactCellNumber.setText("Cell: " + contact.getCellNumber());
+
             Button b = (Button) v.findViewById(R.id.buttonDeleteContact);
             b.setVisibility(View.INVISIBLE);
 //            ImageView bestFriendForever = (ImageView) v.findViewById(R.id.imageBestFriend);
