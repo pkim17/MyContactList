@@ -10,8 +10,10 @@
     <string name="textCellPhone">Cell Phone:</string>
     <string name="textEmail">Email:</string>
     <string name="textBirthday">Birthday:</string>
+<!--    <string name="textBestFriend">Best Friend Forever:</string>-->
 
-<!--    Date Picker-->
+
+    <!--    Date Picker-->
     <string name="buttonCancel">Cancel</string>
     <string name="buttonSelect">Select</string>
 
@@ -26,7 +28,7 @@
     <string name="radioBirthday">Birthday</string>
     <string name="radioAscending">Ascending</string>
     <string name="radioDescending">Descending</string>
-    <string name="radioColorPink">Pink</string>
+    <string name="radioColorLightGreen">Light Green</string>
     <string name="radioColorGold">Gold</string>
     <string name="radioColorLightPurple">Light Purple</string>
 

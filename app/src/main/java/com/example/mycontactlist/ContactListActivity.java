@@ -6,16 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class ContactListActivity extends AppCompatActivity {
@@ -46,6 +43,8 @@ public class ContactListActivity extends AppCompatActivity {
                 Context.MODE_PRIVATE).getString("sortfield", "contactname");
         String sortOrder = getSharedPreferences("MyContactListPreferences",
                 Context.MODE_PRIVATE).getString("sortorder", "ASC");
+        String setColor = getSharedPreferences("MyContactListPreferences", Context.MODE_PRIVATE)
+                .getString("setcolor","light green");
 
         ContactDataSource ds = new ContactDataSource(this);
 
@@ -54,11 +53,28 @@ public class ContactListActivity extends AppCompatActivity {
             contacts = ds.getContacts(sortBy, sortOrder);
             ds.close();
 
+//            If data contains existing contacts
             if (contacts.size() > 0)    {
                 ListView listView = (ListView) findViewById(R.id.lvContacts);
                 adapter = new ContactAdapter(this, contacts);
                 listView.setAdapter(adapter);
+
+                if (setColor.equalsIgnoreCase("light green")) {
+                    listView.setBackgroundResource(R.color.exercise_radio_color_light_green);
+
+                }
+                else if (setColor.equalsIgnoreCase("gold")) {
+                    listView.setBackgroundResource(R.color.exercise_radio_color_gold);
+
+                }
+                else {
+                    listView.setBackgroundResource(R.color.exercise_radio_color_light_purple);
+
+                }
+
             }
+
+            //If there is no existing contact, goto ContactActivity
             else {
                 Intent intent = new Intent(ContactListActivity.this, ContactActivity.class);
                 startActivity(intent);

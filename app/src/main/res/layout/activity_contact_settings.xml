@@ -52,11 +52,12 @@
     <ScrollView
         android:id="@+id/ScrollViewSettings"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/navbar" >
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/textContactSort"
@@ -168,10 +169,10 @@
                 android:layout_marginTop="10dp" >
 
                 <RadioButton
-                    android:id="@+id/radioSetColorPink"
+                    android:id="@+id/radioSetColorLightGreen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/radioColorPink" />
+                    android:text="@string/radioColorLightGreen" />
 
                 <RadioButton
                     android:id="@+id/radioSetColorGold"

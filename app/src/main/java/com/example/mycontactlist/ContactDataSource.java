@@ -41,6 +41,7 @@ public class ContactDataSource {
             initialValues.put("cellnumber", c.getCellNumber());
             initialValues.put("email", c.geteMail());
             initialValues.put("birthday", String.valueOf(c.getBirthday().getTimeInMillis()));
+//            initialValues.put("bestfriendforever", c.isBestFriendForever());
 
             didSucceed = database.insert("contact", null, initialValues) > 0;
 
@@ -65,6 +66,7 @@ public class ContactDataSource {
             updateValues.put("cellnumber", c.getCellNumber());
             updateValues.put("email", c.geteMail());
             updateValues.put("birthday", String.valueOf(c.getBirthday().getTimeInMillis()));
+//            updateValues.put("bestfriendforever", c.isBestFriendForever());
 
             didSucceed = database.update(
                     "contact", updateValues, "_id=" + rowId, null) > 0;
@@ -154,6 +156,7 @@ public class ContactDataSource {
                 newContact.seteMail(cursor.getString(8));
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTimeInMillis(Long.valueOf(cursor.getString(9)));
+//                newContact.setBestFriendForever();
                 newContact.setBirthday(calendar);
                 contacts.add(newContact);
                 cursor.moveToNext();
@@ -184,6 +187,7 @@ public class ContactDataSource {
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(Long.valueOf(cursor.getString(9)));
             contact.setBirthday(calendar);
+//            contact.setBestFriendForever();
 
             cursor.close();
         }

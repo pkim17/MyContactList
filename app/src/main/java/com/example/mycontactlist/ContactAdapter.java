@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,6 +73,11 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
             contactCellNumber.setText("Cell: " + contact.getCellNumber());
             Button b = (Button) v.findViewById(R.id.buttonDeleteContact);
             b.setVisibility(View.INVISIBLE);
+//            ImageView bestFriendForever = (ImageView) v.findViewById(R.id.imageBestFriend);
+
+
+
+
 
         }
         catch (Exception e)   {

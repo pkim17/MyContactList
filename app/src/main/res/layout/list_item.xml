@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:id="@+id/NameRed"
+        android:id="@+id/Name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -46,6 +47,16 @@
             android:text="@string/textCellNumber" />
 
 
+<!--        <ImageView-->
+<!--            android:id="@+id/imageBestFriend"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="30dp"-->
+<!--            android:layout_marginLeft="31dp"-->
+<!--            android:layout_alignTop="@+id/textContactName"-->
+<!--            android:layout_toEndOf="@+id/textContactName"-->
+<!--            android:layout_toRightOf="@+id/textContactName"-->
+<!--            app:srcCompat="@android:drawable/btn_star_big_on" />-->
 
         <Button
             android:id="@+id/buttonDeleteContact"

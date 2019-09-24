@@ -12,6 +12,7 @@ import android.text.format.DateFormat;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
@@ -43,16 +44,38 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
         initSaveButton();
 
         Bundle extras = getIntent().getExtras();
-        if(extras != null)  {
+        if (extras != null) {
             initContact(extras.getInt("contactid"));
-        }
-        else {
+        } else {
             currentContact = new Contact();
         }
-
         setForEditing(false);
 
     }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+
+
+            String setColor = getSharedPreferences("MyContactListPreferences", Context.MODE_PRIVATE)
+                    .getString("setcolor", "light green");
+            ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
+            if (setColor.equalsIgnoreCase("light green")) {
+                scrollView.setBackgroundResource(R.color.exercise_radio_color_light_green);
+
+            } else if (setColor.equalsIgnoreCase("gold")) {
+                scrollView.setBackgroundResource(R.color.exercise_radio_color_gold);
+
+            } else {
+                scrollView.setBackgroundResource(R.color.exercise_radio_color_light_purple);
+
+            }
+
+        }
+
+
+
     private void initListButton() {
         ImageButton ibList = (ImageButton) findViewById(R.id.imageButtonList);
         ibList.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +129,7 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
         EditText editEmail = (EditText) findViewById(R.id.editEmail);
         Button buttonChange = (Button) findViewById(R.id.btnBirthday);
         Button buttonSave = (Button) findViewById(R.id.buttonSave);
+//        CheckBox checkBestFriend = (CheckBox) findViewById(R.id.checkBestFriend);
 
         editName.setEnabled(enabled);
         editAddress.setEnabled(enabled);
@@ -117,6 +141,7 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
         editEmail.setEnabled(enabled);
         buttonChange.setEnabled(enabled);
         buttonSave.setEnabled(enabled);
+//        checkBestFriend.setEnabled(enabled);
 
         if(enabled) {
             editName.requestFocus();
@@ -401,6 +426,7 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
         EditText editCell = (EditText) findViewById(R.id.editCell);
         EditText editEmail = (EditText) findViewById(R.id.editEmail);
         TextView birthDay = (TextView) findViewById(R.id.textBirthday);
+//        CheckBox checkBestFriend = (CheckBox) findViewById(R.id.checkBestFriend);
 
         editName.setText(currentContact.getContactName());
         editAddress.setText(currentContact.getStreetAddress());
@@ -410,7 +436,8 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
         editPhone.setText(currentContact.getPhoneNumber());
         editCell.setText(currentContact.getCellNumber());
         editEmail.setText(currentContact.geteMail());
-        birthDay.setText(DateFormat.format("MM/dd'yyyy", currentContact.getBirthday().getTimeInMillis()).toString());
+        birthDay.setText(DateFormat.format("MM/dd/yyyy", currentContact.getBirthday().getTimeInMillis()).toString());
+//        checkBestFriend.setChecked(currentContact.isBestFriendForever());
 
 
     }

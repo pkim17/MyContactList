@@ -63,7 +63,7 @@ public class ContactSettingsActivity extends AppCompatActivity {
         String sortOrder = getSharedPreferences("MyContactListPreferences", Context.MODE_PRIVATE)
                 .getString("sortorder","ASC");
         String setColor = getSharedPreferences("MyContactListPreferences", Context.MODE_PRIVATE)
-                .getString("setcolor","pink");
+                .getString("setcolor","light green");
 
 
         RadioButton rbName = (RadioButton) findViewById(R.id.radioName);
@@ -92,14 +92,14 @@ public class ContactSettingsActivity extends AppCompatActivity {
         }
 
 //        If a certain color is selected, apply that color when user enters page
-        RadioButton rbPink = (RadioButton) findViewById(R.id.radioSetColorPink);
+        RadioButton rbPink = (RadioButton) findViewById(R.id.radioSetColorLightGreen);
         RadioButton rbGold = (RadioButton) findViewById(R.id.radioSetColorGold);
         RadioButton rbLightPurple = (RadioButton) findViewById(R.id.radioSetColorLightPurple);
         ScrollView s = (ScrollView) findViewById(R.id.ScrollViewSettings);
 
-        if (setColor.equalsIgnoreCase("pink")) {
+        if (setColor.equalsIgnoreCase("light green")) {
             rbPink.setChecked(true);
-            s.setBackgroundResource(R.color.exercise_radio_color_pink);
+            s.setBackgroundResource(R.color.exercise_radio_color_light_green);
         }
         else if (setColor.equalsIgnoreCase("gold")) {
             rbGold.setChecked(true);
@@ -185,7 +185,7 @@ public class ContactSettingsActivity extends AppCompatActivity {
 
             @Override
             public void onCheckedChanged(RadioGroup arg0, int arg1) {
-                RadioButton rbPink = (RadioButton) findViewById(R.id.radioSetColorPink);
+                RadioButton rbPink = (RadioButton) findViewById(R.id.radioSetColorLightGreen);
                 RadioButton rbGold = (RadioButton) findViewById(R.id.radioSetColorGold);
                 RadioButton rbLightPurple = (RadioButton) findViewById(R.id.radioSetColorLightPurple);
 
@@ -195,8 +195,8 @@ public class ContactSettingsActivity extends AppCompatActivity {
                 if (rbPink.isChecked()) {
                     getSharedPreferences("MyContactListPreferences",
                             Context.MODE_PRIVATE).edit()
-                            .putString("setcolor", "pink").commit();
-                    s.setBackgroundResource(R.color.exercise_radio_color_pink);
+                            .putString("setcolor", "light green").commit();
+                    s.setBackgroundResource(R.color.exercise_radio_color_light_green);
                 }
                 else if (rbGold.isChecked())    {
                     getSharedPreferences("MyContactListPreferences",

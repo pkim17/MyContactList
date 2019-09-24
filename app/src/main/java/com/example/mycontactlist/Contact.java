@@ -15,7 +15,7 @@ public class Contact {
     private String eMail;
     private Calendar birthday;
 //    Exercise5.3
-    private int bestFriendForever;
+//    private boolean bestFriendForever;
 
     public Contact()    {
         contactID = -1;
@@ -104,11 +104,11 @@ public class Contact {
     }
 
 //    Exercise 5.3
-    public int getBestFriendForever() {
-        return bestFriendForever;
-    }
-
-    public void setBestFriendForever(int bestFriendForever) {
-        this.bestFriendForever = bestFriendForever;
-    }
+//    public boolean isBestFriendForever() {
+//        return bestFriendForever;
+//    }
+//
+//    public void setBestFriendForever(boolean bestFriendForever) {
+//        this.bestFriendForever = bestFriendForever;
+//    }
 }
