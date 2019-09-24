@@ -16,6 +16,11 @@
     <color name="exercise_radio_color_gold">#eda803</color>
     <color name="exercise_radio_color_light_purple">#dfe2ff</color>
 
+    <color name="system_red">#ff0000</color>
+    <color name="system_transparent">#00000000</color>
+    <color name="system_blue">#0000ff</color>
+
+
 
 
 </resources>

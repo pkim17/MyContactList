@@ -5,7 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ContactListActivity">
-    <!--    Navigation Bar-->
+
+<!--    Toolbar-->
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="0dp"
+        android:background="@color/toolbar_background"
+        android:paddingTop="10dp"
+        android:scrollbarSize="4dp">
+
+        <Button
+            android:id="@+id/contactListButtonDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp"
+            android:text="@string/contactListButtonDelete"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/contactListButtonAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="40dp"
+            android:layout_marginEnd="40dp"
+            android:text="@string/contactListButtonAdd"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+<!--    Navigation Bar-->
     <RelativeLayout
         android:id="@+id/navbar"
         android:layout_width="match_parent"
@@ -46,5 +86,15 @@
             app:srcCompat="@drawable/icons8_settings_64" />
 
     </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lvContacts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/navbar"
+        android:layout_below="@+id/toolbar" />
+
 
 </RelativeLayout>

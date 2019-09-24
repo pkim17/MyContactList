@@ -102,4 +102,13 @@ public class Contact {
     public void setBirthday(Calendar birthday) {
         this.birthday = birthday;
     }
+
+//    Exercise 5.3
+    public int getBestFriendForever() {
+        return bestFriendForever;
+    }
+
+    public void setBestFriendForever(int bestFriendForever) {
+        this.bestFriendForever = bestFriendForever;
+    }
 }

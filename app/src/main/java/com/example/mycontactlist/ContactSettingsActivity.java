@@ -40,8 +40,8 @@ public class ContactSettingsActivity extends AppCompatActivity {
         });
     }
     private void initMapButton() {
-        ImageButton ibList = (ImageButton) findViewById(R.id.imageButtonMap);
-        ibList.setOnClickListener(new View.OnClickListener() {
+        ImageButton ibMap = (ImageButton) findViewById(R.id.imageButtonMap);
+        ibMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ContactSettingsActivity.this, ContactMapActivity.class);

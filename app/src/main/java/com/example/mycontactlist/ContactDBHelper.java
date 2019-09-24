@@ -16,7 +16,7 @@ public class ContactDBHelper extends SQLiteOpenHelper   {
             "create table contact (_id integer primary key autoincrement, "
             + "contactname text not null, streetaddress text, "
             + "city text, state text, zipcode text, "
-            + "phonenumber text, cellnumber text "
+            + "phonenumber text, cellnumber text, "
             + "email text, birthday text);";
 
     public ContactDBHelper(Context context) {
@@ -35,6 +35,13 @@ public class ContactDBHelper extends SQLiteOpenHelper   {
                 + newVersion + ", which will destory all old data");
         db.execSQL("DROP TABLE IF EXISTS contact");
         onCreate(db);
+
+        if (newVersion > oldVersion)    {
+          db.execSQL("ALTER table contact add column bestFriend integer");
+        }
+        else {
+            onCreate(db);
+        }
     }
 
 

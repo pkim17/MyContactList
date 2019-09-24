@@ -30,6 +30,18 @@
     <string name="radioColorGold">Gold</string>
     <string name="radioColorLightPurple">Light Purple</string>
 
+<!--    list_item-->
+    <string name="textContactName">Contact Name</string>
+    <string name="textHomeNumber">Home Phone</string>
+    <string name="textCellNumber">Cell Phone</string>
+    <string name="textButtonDeleteContact">Delete</string>
+
+<!--Contact List Button Label-->
+    <string name="contactListButtonDelete">Delete</string>
+    <string name="contactListButtonAdd">Add Contact</string>
+
+
+
 
 
 

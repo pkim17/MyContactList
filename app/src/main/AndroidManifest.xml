@@ -9,16 +9,18 @@
         android:roundIcon="@mipmap/contactlist_launch_image"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ContactSettingsActivity" />
-        <activity android:name=".ContactMapActivity" />
-        <activity android:name=".ContactListActivity" />
-        <activity android:name=".ContactActivity">
+        <activity
+            android:name=".ContactListActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ContactActivity" />
+        <activity android:name=".ContactSettingsActivity" />
+        <activity android:name=".ContactMapActivity" />
+
     </application>
 
 </manifest>

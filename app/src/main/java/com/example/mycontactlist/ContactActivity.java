@@ -16,7 +16,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import org.w3c.dom.Text;
+
 import java.util.Calendar;
 
 public class ContactActivity extends AppCompatActivity implements DatePickerDialog.SaveDateListener {
@@ -26,17 +30,27 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
+
         initListButton();
         initMapButton();
         initSettingButton();
         initToggleButton();
-        setForEditing(false);
         initChangeDateButton();
-        currentContact = new Contact();
         initTextChangedEvents();
         initSaveButton();
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null)  {
+            initContact(extras.getInt("contactid"));
+        }
+        else {
+            currentContact = new Contact();
+        }
+
+        setForEditing(false);
 
     }
     private void initListButton() {
@@ -312,7 +326,6 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
             @Override
             public void onClick(View view) {
                 hideKeyboard();
-                setForEditing(false);
                 boolean wasSuccessful = false;
                 ContactDataSource ds = new ContactDataSource(ContactActivity.this);
                 try {
@@ -320,10 +333,12 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
 
                     if (currentContact.getContactID() == -1)    {
                         wasSuccessful = ds.insertContact(currentContact);
-                        int newId = ds.getLastContactId();
-                        currentContact.setContactID(newId);
-                    }
-                    else {
+
+                        if (wasSuccessful)  {
+                            int newId = ds.getLastContactId();
+                            currentContact.setContactID(newId);
+                        }
+                    } else {
                         wasSuccessful = ds.updateContact(currentContact);
                     }
                     ds.close();
@@ -364,4 +379,39 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
 
     }
 
+    private void initContact(int id) {
+
+        ContactDataSource ds = new ContactDataSource(ContactActivity.this);
+
+        try {
+            ds.open();
+            currentContact = ds.getSpecificContact(id);
+            ds.close();
+        }
+        catch (Exception e) {
+            Toast.makeText(this, "Load Contact Failed", Toast.LENGTH_LONG).show();
+        }
+
+        EditText editName = (EditText) findViewById(R.id.editName);
+        EditText editAddress = (EditText)findViewById(R.id.editAddress);
+        EditText editCity = (EditText) findViewById(R.id.editCity);
+        EditText editState = (EditText) findViewById(R.id.editState);
+        EditText editZip = (EditText) findViewById(R.id.editZipcode);
+        EditText editPhone = (EditText) findViewById(R.id.editHome);
+        EditText editCell = (EditText) findViewById(R.id.editCell);
+        EditText editEmail = (EditText) findViewById(R.id.editEmail);
+        TextView birthDay = (TextView) findViewById(R.id.textBirthday);
+
+        editName.setText(currentContact.getContactName());
+        editAddress.setText(currentContact.getStreetAddress());
+        editCity.setText(currentContact.getCity());
+        editState.setText(currentContact.getState());
+        editZip.setText(currentContact.getZipCode());
+        editPhone.setText(currentContact.getPhoneNumber());
+        editCell.setText(currentContact.getCellNumber());
+        editEmail.setText(currentContact.geteMail());
+        birthDay.setText(DateFormat.format("MM/dd'yyyy", currentContact.getBirthday().getTimeInMillis()).toString());
+
+
+    }
 }
