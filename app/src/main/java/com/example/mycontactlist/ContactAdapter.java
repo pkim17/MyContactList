@@ -6,13 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -38,34 +35,15 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
                 v = vi.inflate(R.layout.list_item, null);
             }
 
-//            IN PROGRESS
-//            Exercise 6.4 Alternate between red and blue text
-//                if (position % 2 == 0) {
-//                    TextView contactNameRed = (TextView) v.findViewById(R.id.textContactNameRed);
-//                    contactNameRed.setText(contact.getContactName());
-//
-//                    //            Exercise 6.1 Display Home: # and Cell: #
-//                    TextView contactHomeNumber = (TextView) v.findViewById(R.id.textHomeNumberRed);
-//                    TextView contactCellNumber = (TextView) v.findViewById(R.id.textCellNumberRed);
-//                    contactHomeNumber.setText("HomeR: " + contact.getPhoneNumber());
-//                    contactCellNumber.setText("CellR: " + contact.getCellNumber());
-//                    Button b = (Button) v.findViewById(R.id.buttonDeleteContact);
-//                    b.setVisibility(View.INVISIBLE);
-//                } else {
-//                    TextView contactNameBlue = (TextView) v.findViewById(R.id.textContactNameBlue);
-//                    contactNameBlue.setText(contact.getContactName());
-//
-//                    //            Exercise 6.1 Display Home: # and Cell: #
-//                    TextView contactHomeNumber = (TextView) v.findViewById(R.id.textHomeNumberBlue);
-//                    TextView contactCellNumber = (TextView) v.findViewById(R.id.textCellNumberBlue);
-//                    contactHomeNumber.setText("HomeB: " + contact.getPhoneNumber());
-//                    contactCellNumber.setText("CellB: " + contact.getCellNumber());
-//                    Button b = (Button) v.findViewById(R.id.buttonDeleteContact);
-//                    b.setVisibility(View.INVISIBLE);
-//                }
-
             TextView contactName = (TextView) v.findViewById(R.id.textContactName);
             contactName.setText(contact.getContactName());
+
+            if (position % 2 == 0)  {
+                contactName.setTextColor(parent.getResources().getColor(R.color.system_red));
+            }
+            else {
+                contactName.setTextColor(parent.getResources().getColor(R.color.system_blue));
+            }
 
 //            Exercise 6.3 to display Address
             TextView contactAddress = (TextView) v.findViewById(R.id.textListAddress);
@@ -80,7 +58,14 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
 
             Button b = (Button) v.findViewById(R.id.buttonDeleteContact);
             b.setVisibility(View.INVISIBLE);
-//            ImageView bestFriendForever = (ImageView) v.findViewById(R.id.imageBestFriend);
+
+            ImageView bestFriendStar = (ImageView) v.findViewById(R.id.imageBestFriend);
+            bestFriendStar.setVisibility(View.INVISIBLE);
+
+
+            if (contact.isBestFriendForever() == 1) {
+                bestFriendStar.setVisibility(View.VISIBLE);
+            }
 
 
 

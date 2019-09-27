@@ -308,24 +308,24 @@
                 android:layout_marginEnd="10dp"
                 android:layout_alignBaseline="@+id/textBirthday" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/textBestFriend"-->
-<!--                android:text="@string/textBestFriend"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_alignParentLeft="true"-->
-<!--                android:layout_alignParentStart="true"-->
-<!--                android:layout_marginLeft="10dp"-->
-<!--                android:layout_marginStart="10dp"-->
-<!--                android:layout_marginTop="30dp"-->
-<!--                android:layout_below="@id/textBirthday"/>-->
+            <TextView
+                android:id="@+id/textBestFriend"
+                android:text="@string/textBestFriend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_below="@id/textBirthday"/>
 
-<!--            <CheckBox-->
-<!--                android:id="@+id/checkBestFriend"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_toRightOf="@+id/textBestFriend"-->
-<!--                android:layout_alignBaseline="@+id/textBestFriend" />-->
+            <CheckBox
+                android:id="@+id/checkBoxBestFriend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/textBestFriend"
+                android:layout_alignBaseline="@+id/textBestFriend" />
 
 
         </RelativeLayout>

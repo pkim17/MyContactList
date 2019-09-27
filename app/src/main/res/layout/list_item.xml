@@ -59,16 +59,16 @@
 
 
 
-<!--        <ImageView-->
-<!--            android:id="@+id/imageBestFriend"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="30dp"-->
-<!--            android:layout_marginLeft="31dp"-->
-<!--            android:layout_alignTop="@+id/textContactName"-->
-<!--            android:layout_toEndOf="@+id/textContactName"-->
-<!--            android:layout_toRightOf="@+id/textContactName"-->
-<!--            app:srcCompat="@android:drawable/btn_star_big_on" />-->
+        <ImageView
+            android:id="@+id/imageBestFriend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="31dp"
+            android:layout_alignTop="@+id/textContactName"
+            android:layout_toEndOf="@+id/textContactName"
+            android:layout_toRightOf="@+id/textContactName"
+            app:srcCompat="@android:drawable/btn_star_big_on" />
 
         <Button
             android:id="@+id/buttonDeleteContact"

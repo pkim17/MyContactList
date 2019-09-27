@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -41,7 +40,7 @@ public class ContactDataSource {
             initialValues.put("cellnumber", c.getCellNumber());
             initialValues.put("email", c.geteMail());
             initialValues.put("birthday", String.valueOf(c.getBirthday().getTimeInMillis()));
-//            initialValues.put("bestfriendforever", c.isBestFriendForever());
+            initialValues.put("bff", c.isBestFriendForever());
 
             didSucceed = database.insert("contact", null, initialValues) > 0;
 
@@ -66,7 +65,7 @@ public class ContactDataSource {
             updateValues.put("cellnumber", c.getCellNumber());
             updateValues.put("email", c.geteMail());
             updateValues.put("birthday", String.valueOf(c.getBirthday().getTimeInMillis()));
-//            updateValues.put("bestfriendforever", c.isBestFriendForever());
+            updateValues.put("bff", c.isBestFriendForever());
 
             didSucceed = database.update(
                     "contact", updateValues, "_id=" + rowId, null) > 0;
@@ -156,8 +155,12 @@ public class ContactDataSource {
                 newContact.seteMail(cursor.getString(8));
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTimeInMillis(Long.valueOf(cursor.getString(9)));
-//                newContact.setBestFriendForever();
                 newContact.setBirthday(calendar);
+
+                if(cursor.getInt(10) > 0){
+                    newContact.setBestFriendForever(1);
+                }
+
                 contacts.add(newContact);
                 cursor.moveToNext();
             }
@@ -186,9 +189,12 @@ public class ContactDataSource {
             contact.seteMail(cursor.getString(8));
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(Long.valueOf(cursor.getString(9)));
-            contact.setBirthday(calendar);
-//            contact.setBestFriendForever();
 
+            if(cursor.getInt(10) > 0){
+                contact.setBestFriendForever(1);
+            }
+
+            contact.setBirthday(calendar);
             cursor.close();
         }
         return contact;

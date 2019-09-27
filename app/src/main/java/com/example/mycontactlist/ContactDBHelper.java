@@ -17,7 +17,7 @@ public class ContactDBHelper extends SQLiteOpenHelper   {
             + "contactname text not null, streetaddress text, "
             + "city text, state text, zipcode text, "
             + "phonenumber text, cellnumber text, "
-            + "email text, birthday text);";
+            + "email text, birthday text, bff integer);";
 
     public ContactDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -32,16 +32,16 @@ public class ContactDBHelper extends SQLiteOpenHelper   {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)    {
         Log.w(ContactDBHelper.class.getName(),
                 "Upgrading database from version " + oldVersion + " to "
-                + newVersion + ", which will destory all old data");
+                + newVersion + ", which will alter old table data");
         db.execSQL("DROP TABLE IF EXISTS contact");
         onCreate(db);
-
-        if (newVersion > oldVersion)    {
-          db.execSQL("ALTER table contact add column bestFriend integer");
-        }
-        else {
-            onCreate(db);
-        }
+//
+//        if (newVersion > oldVersion)    {
+//          db.execSQL("ALTER TABLE contact ADD COLUMN bestFriend DEFAULT 0");
+//        }
+//        else {
+//            onCreate(db);
+//        }
     }
 
 

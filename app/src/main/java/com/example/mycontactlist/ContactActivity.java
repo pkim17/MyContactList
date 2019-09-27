@@ -13,14 +13,13 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-
-import org.w3c.dom.Text;
 
 import java.util.Calendar;
 
@@ -49,6 +48,8 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
         } else {
             currentContact = new Contact();
         }
+
+        initBestFriendCheckBox();
         setForEditing(false);
 
     }
@@ -129,7 +130,7 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
         EditText editEmail = (EditText) findViewById(R.id.editEmail);
         Button buttonChange = (Button) findViewById(R.id.btnBirthday);
         Button buttonSave = (Button) findViewById(R.id.buttonSave);
-//        CheckBox checkBestFriend = (CheckBox) findViewById(R.id.checkBestFriend);
+        CheckBox checkBestFriend = (CheckBox) findViewById(R.id.checkBoxBestFriend);
 
         editName.setEnabled(enabled);
         editAddress.setEnabled(enabled);
@@ -141,7 +142,7 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
         editEmail.setEnabled(enabled);
         buttonChange.setEnabled(enabled);
         buttonSave.setEnabled(enabled);
-//        checkBestFriend.setEnabled(enabled);
+        checkBestFriend.setEnabled(enabled);
 
         if(enabled) {
             editName.requestFocus();
@@ -345,6 +346,24 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
         etCellNumber.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
     }
 
+    private void initBestFriendCheckBox() {
+
+        CheckBox bestFriendCheckBox = findViewById(R.id.checkBoxBestFriend);
+        bestFriendCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                if (currentContact.isBestFriendForever() == 0) {
+                    currentContact.setBestFriendForever(1);
+                } else {
+                    currentContact.setBestFriendForever(0);
+                }
+
+            }
+
+        });
+    }
+
     private void initSaveButton()   {
         Button saveButton = (Button) findViewById(R.id.buttonSave);
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -426,7 +445,7 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
         EditText editCell = (EditText) findViewById(R.id.editCell);
         EditText editEmail = (EditText) findViewById(R.id.editEmail);
         TextView birthDay = (TextView) findViewById(R.id.textBirthday);
-//        CheckBox checkBestFriend = (CheckBox) findViewById(R.id.checkBestFriend);
+        CheckBox checkBestFriend = (CheckBox) findViewById(R.id.checkBoxBestFriend);
 
         editName.setText(currentContact.getContactName());
         editAddress.setText(currentContact.getStreetAddress());
@@ -437,8 +456,12 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
         editCell.setText(currentContact.getCellNumber());
         editEmail.setText(currentContact.geteMail());
         birthDay.setText(DateFormat.format("MM/dd/yyyy", currentContact.getBirthday().getTimeInMillis()).toString());
-//        checkBestFriend.setChecked(currentContact.isBestFriendForever());
+
+        checkBestFriend.setChecked(currentContact.isBestFriendForever() == 1);
 
 
     }
+
+
+
 }

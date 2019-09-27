@@ -10,7 +10,7 @@
     <string name="textCellPhone">Cell Phone:</string>
     <string name="textEmail">Email:</string>
     <string name="textBirthday">Birthday:</string>
-<!--    <string name="textBestFriend">Best Friend Forever:</string>-->
+    <string name="textBestFriend">Best Friend Forever:</string>
 
 
     <!--    Date Picker-->
