@@ -54,26 +54,26 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
 
     }
 
-        @Override
-        public void onResume() {
-            super.onResume();
+    @Override
+    public void onResume() {
+        super.onResume();
 
 
-            String setColor = getSharedPreferences("MyContactListPreferences", Context.MODE_PRIVATE)
-                    .getString("setcolor", "light green");
-            ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
-            if (setColor.equalsIgnoreCase("light green")) {
-                scrollView.setBackgroundResource(R.color.exercise_radio_color_light_green);
+        String setColor = getSharedPreferences("MyContactListPreferences", Context.MODE_PRIVATE)
+                .getString("setcolor", "light green");
+        ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
+        if (setColor.equalsIgnoreCase("light green")) {
+            scrollView.setBackgroundResource(R.color.exercise_radio_color_light_green);
 
-            } else if (setColor.equalsIgnoreCase("gold")) {
-                scrollView.setBackgroundResource(R.color.exercise_radio_color_gold);
+        } else if (setColor.equalsIgnoreCase("gold")) {
+            scrollView.setBackgroundResource(R.color.exercise_radio_color_gold);
 
-            } else {
-                scrollView.setBackgroundResource(R.color.exercise_radio_color_light_purple);
-
-            }
+        } else {
+            scrollView.setBackgroundResource(R.color.exercise_radio_color_light_purple);
 
         }
+
+    }
 
 
 
@@ -94,6 +94,13 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ContactActivity.this, ContactMapActivity.class);
+                if (currentContact.getContactID() == -1) {
+                    Toast.makeText(getBaseContext(),
+                            "Contact must be saved before it can be mapped", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    intent.putExtra("contactid", currentContact.getContactID());
+                }
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
