@@ -58,7 +58,7 @@
     <string name="textHolderNetworkLatitude">None</string>
     <string name="textHolderNetworkLongitude">None</string>
     <string name="textHolderNetworkAccuracy">None</string>
-    <string name="textButtonGotoMap">Map</string>
+    <string name="textButtonGotoMap">Back to Map</string>
 
 
 
