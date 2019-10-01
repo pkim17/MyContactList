@@ -323,7 +323,7 @@ public class ContactMapActivity extends AppCompatActivity
                 }
             });
 
-            gMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), measuredWidth, measuredHeight, 450));
+            gMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), measuredWidth, measuredHeight, 250));
         }
         else {
             if (currentContact != null) {
