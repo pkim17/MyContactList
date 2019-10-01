@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,27 @@ public class ContactCoordinateActivity extends AppCompatActivity {
         initGetLocationButton();
         initReturnToMapButton();
 
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+
+        String setColor = getSharedPreferences("MyContactListPreferences", Context.MODE_PRIVATE)
+                .getString("setcolor", "light green");
+        ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView_Lat_Lng_Acc);
+        if (setColor.equalsIgnoreCase("light green")) {
+            scrollView.setBackgroundResource(R.color.exercise_radio_color_light_green);
+
+        } else if (setColor.equalsIgnoreCase("gold")) {
+            scrollView.setBackgroundResource(R.color.exercise_radio_color_gold);
+
+        } else {
+            scrollView.setBackgroundResource(R.color.exercise_radio_color_light_purple);
+
+        }
 
     }
 
