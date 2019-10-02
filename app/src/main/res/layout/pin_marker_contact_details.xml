@@ -21,16 +21,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal|center_vertical"
             android:id="@+id/markerAddress" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal|center_vertical"
             android:id="@+id/markerHomePhoneNumber" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal|center_vertical"
             android:id="@+id/markerCellPhoneNumber" />
 
 

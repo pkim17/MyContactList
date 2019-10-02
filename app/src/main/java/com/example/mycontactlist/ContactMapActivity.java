@@ -251,6 +251,36 @@ public class ContactMapActivity extends AppCompatActivity
 
         LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
     }
+    
+    class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
+        @Override
+        public View getInfoWindow(Marker marker) {
+            return null;
+        }
+        @Override
+        public View getInfoContents(Marker marker) {
+
+            View row = getLayoutInflater().inflate(R.layout.pin_marker_contact_details, null);
+            TextView t1_Title = (TextView) row.findViewById(R.id.markerTitle);
+            TextView t2_Address = (TextView) row.findViewById(R.id.markerAddress);
+            TextView t3_HomePhone = (TextView) row.findViewById(R.id.markerHomePhoneNumber);
+            TextView t4_CellPhone = (TextView) row.findViewById(R.id.markerCellPhoneNumber);
+
+            String address =
+                    currentContact.getStreetAddress() + ", " +
+                            currentContact.getCity() + ", " +
+                            currentContact.getState() + " " +
+                            currentContact.getZipCode();
+
+            t1_Title.setText(currentContact.getContactName());
+            t2_Address.setText(address);
+            t3_HomePhone.setText("Home: " + currentContact.getPhoneNumber());
+            t4_CellPhone.setText("Cell: " + currentContact.getCellNumber());
+
+
+            return row;
+        }
+    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -277,6 +307,14 @@ public class ContactMapActivity extends AppCompatActivity
                                 currentContact.getState() + " " +
                                 currentContact.getZipCode();
 
+//                String address =
+//                        currentContact.getStreetAddress() + ", " +
+//                                currentContact.getCity() + ", " +
+//                                currentContact.getState() + " " +
+//                                currentContact.getZipCode() + "\n " +
+//                                currentContact.getPhoneNumber() + " " +
+//                                currentContact.getCellNumber();
+
                 try {
                     addresses = geo.getFromLocationName(address, 1);
                 } catch (IOException e) {
@@ -286,44 +324,19 @@ public class ContactMapActivity extends AppCompatActivity
                 LatLng point = new LatLng(addresses.get(0).getLatitude(), addresses.get(0).getLongitude());
                 builder.include(point);
 
+
                 gMap.addMarker(new MarkerOptions().position(point).icon(BitmapDescriptorFactory.fromResource(R.drawable.icons8_marker_40)));
+
+//            Should Fix:
+//            Currently displays the last Contact info for everyone
+                gMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
 
             }
 
-//            IMCOMPLETE
-//            Currently displays the last Contact info for everyone
-
-            gMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-                @Override
-                public View getInfoWindow(Marker marker) {
-                    return null;
-                }
-                @Override
-                public View getInfoContents(Marker marker) {
-
-                    View row = getLayoutInflater().inflate(R.layout.pin_marker_contact_details, null);
-                    TextView t1_Title = (TextView) row.findViewById(R.id.markerTitle);
-                    TextView t2_Address = (TextView) row.findViewById(R.id.markerAddress);
-                    TextView t3_HomePhone = (TextView) row.findViewById(R.id.markerHomePhoneNumber);
-                    TextView t4_CellPhone = (TextView) row.findViewById(R.id.markerCellPhoneNumber);
-
-                    String address =
-                            currentContact.getStreetAddress() + ", " +
-                                    currentContact.getCity() + ", " +
-                                    currentContact.getState() + " " +
-                                    currentContact.getZipCode();
-
-                    t1_Title.setText(currentContact.getContactName());
-                    t2_Address.setText(address);
-                    t3_HomePhone.setText("Home: " + currentContact.getPhoneNumber());
-                    t4_CellPhone.setText("Cell: " + currentContact.getCellNumber());
 
 
-                    return row;
-                }
-            });
+            gMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), measuredWidth, measuredHeight, 250));
 
-            gMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), measuredWidth, measuredHeight, 450));
         }
         else {
             if (currentContact != null) {
@@ -347,37 +360,7 @@ public class ContactMapActivity extends AppCompatActivity
                         addresses.get(0).getLongitude());
 
                 gMap.addMarker(new MarkerOptions().position(point).icon(BitmapDescriptorFactory.fromResource(R.drawable.icons8_marker_40)));
-
-                gMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-                    @Override
-                    public View getInfoWindow(Marker marker) {
-                          return null;
-                    }
-                    @Override
-                    public View getInfoContents(Marker marker) {
-
-                        View row = getLayoutInflater().inflate(R.layout.pin_marker_contact_details, null);
-                        TextView t1_Title = (TextView) row.findViewById(R.id.markerTitle);
-                        TextView t2_Address = (TextView) row.findViewById(R.id.markerAddress);
-                        TextView t3_HomePhone = (TextView) row.findViewById(R.id.markerHomePhoneNumber);
-                        TextView t4_CellPhone = (TextView) row.findViewById(R.id.markerCellPhoneNumber);
-
-                        String address =
-                            currentContact.getStreetAddress() + ", " +
-                            currentContact.getCity() + ", " +
-                            currentContact.getState() + " " +
-                            currentContact.getZipCode();
-
-                        t1_Title.setText(currentContact.getContactName());
-                        t2_Address.setText(address);
-                        t3_HomePhone.setText("Home: " + currentContact.getPhoneNumber());
-                        t4_CellPhone.setText("Cell: " + currentContact.getCellNumber());
-
-
-                        return row;
-                    }
-                });
-
+                gMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
                 gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(point, 16));
             }
             else {
@@ -473,48 +456,5 @@ public class ContactMapActivity extends AppCompatActivity
         });
     }
 
-//        final Button coordinatebtn = (Button) findViewById(R.id.buttonGetCoordinate);
-//        coordinatebtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String currentSetting = coordinatebtn.getText().toString();
-//                if (currentSetting.equalsIgnoreCase("Get Coordinates")) {
-//
-//                    getView(View , R.layout.view_lat_lng_acc);
-////                    ListView listView = (ListView) findViewById(R.id.lv_Lat_Lng_Acc);
-////                    adapter = new SimpleAdapter(this, ,R.layout.view_lat_lng_acc);
-////                    listView.setAdapter(adapter);
-//
-//                    coordinatebtn.setText("Map");
-//                }
-//                else {
-//                    final Button satellitebtn = (Button) findViewById(R.id.buttonMapType);
-//                    satellitebtn.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            String currentSetting = satellitebtn.getText().toString();
-//                            if (currentSetting.equalsIgnoreCase("Satellite View")) {
-//                                gMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-//                                satellitebtn.setText("Normal View");
-//                            }
-//                            else {
-//                                gMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-//                                satellitebtn.setText("Satellite View");
-//                            }
-//                        }
-//                    });
-//                    coordinatebtn.setText("Get Coordinates");
-//                }
-//            }
-//        });
-//
-//    }
-//
-//    public View getView(View convertView, ViewGroup parent)   {
-//        View v = convertView;
-//            if (v == null)  {
-//                LayoutInflater vi = (LayoutInflater) adapterContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                v = vi.inflate(R.layout.view_lat_lng_acc, null);
-//            }
 
 }
