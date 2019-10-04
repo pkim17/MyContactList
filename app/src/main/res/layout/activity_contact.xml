@@ -37,7 +37,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginLeft="40dp"
             android:text="@string/ToggleButtonEdit"
-            android:textSize="14sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/buttonSave"
@@ -129,13 +129,26 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
+                android:layout_toLeftOf="@+id/imageContact"
+                android:layout_toStartOf="@+id/imageContact"
                 android:layout_below="@+id/textContact"
-                android:ems="14"
+                android:ems="12"
                 android:imeOptions="actionNext"
                 android:inputType="textCapWords" />
             <!--            android:inputType="textPersonName"-->
             <!--            android:text="Name" />-->
             <requestFocus />
+
+            <ImageButton
+                android:id="@+id/imageContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_alignBottom="@+id/editAddress"
+                android:src="@drawable/icons8_photo_gallery_96" />
 
             <TextView
                 android:id="@+id/textAddress"
@@ -156,8 +169,10 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
+                android:layout_toLeftOf="@+id/imageContact"
+                android:layout_toStartOf="@+id/imageContact"
                 android:layout_below="@+id/textAddress"
-                android:ems="14"
+                android:ems="12"
                 android:imeOptions="actionNext"
                 android:inputType="textCapWords" />
 

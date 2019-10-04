@@ -26,10 +26,10 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="40dp"
-            android:layout_marginStart="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
             android:text="@string/contactListButtonDelete"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <Button
             android:id="@+id/contactListButtonAdd"
@@ -38,10 +38,20 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="40dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginEnd="15dp"
             android:text="@string/contactListButtonAdd"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textBatteryLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/contactListButtonDelete"
+            android:layout_toLeftOf="@+id/contactListButtonAdd"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="100%" />
 
     </RelativeLayout>
 
@@ -95,6 +105,9 @@
         android:layout_alignParentStart="true"
         android:layout_above="@+id/navbar"
         android:layout_below="@+id/toolbar" />
+
+
+
 
 
 </RelativeLayout>

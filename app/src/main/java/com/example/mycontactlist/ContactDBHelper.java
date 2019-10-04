@@ -9,7 +9,7 @@ import android.util.Log;
 public class ContactDBHelper extends SQLiteOpenHelper   {
 
     private static final String DATABASE_NAME = "mycontacts.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Database creation SQL statement
     private static final String CREATE_TABLE_CONTACT =
@@ -17,7 +17,7 @@ public class ContactDBHelper extends SQLiteOpenHelper   {
             + "contactname text not null, streetaddress text, "
             + "city text, state text, zipcode text, "
             + "phonenumber text, cellnumber text, "
-            + "email text, birthday text, bff integer);";
+            + "email text, birthday text, bff integer, contactphoto blob);";
 
     public ContactDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -30,18 +30,18 @@ public class ContactDBHelper extends SQLiteOpenHelper   {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)    {
-        Log.w(ContactDBHelper.class.getName(),
-                "Upgrading database from version " + oldVersion + " to "
-                + newVersion + ", which will alter old table data");
-        db.execSQL("DROP TABLE IF EXISTS contact");
-        onCreate(db);
+//        Log.w(ContactDBHelper.class.getName(),
+//                "Upgrading database from version " + oldVersion + " to "
+//                + newVersion + ", which will alter old table data");
+//        db.execSQL("DROP TABLE IF EXISTS contact");
+//        onCreate(db);
 //
-//        if (newVersion > oldVersion)    {
-//          db.execSQL("ALTER TABLE contact ADD COLUMN bestFriend DEFAULT 0");
-//        }
-//        else {
-//            onCreate(db);
-//        }
+        try {
+          db.execSQL("ALTER TABLE contact ADD COLUMN contactphoto blob");
+        }
+        catch (Exception e) {
+            //Do nothing
+        }
     }
 
 

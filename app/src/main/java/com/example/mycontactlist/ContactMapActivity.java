@@ -13,6 +13,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Point;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -72,6 +76,14 @@ public class ContactMapActivity extends AppCompatActivity
     GoogleApiClient mGoogleApiClient;
     LocationRequest mLocationRequest;
 
+    SensorManager sensorManager;
+    Sensor accelerometer;
+    Sensor magnetometer;
+    TextView textDirection;
+
+
+
+
     ArrayList<Contact> contacts = new ArrayList<>();
     Contact currentContact = null;
 
@@ -118,6 +130,19 @@ public class ContactMapActivity extends AppCompatActivity
         initMapTypeButton();
         initGetCoordinateButton();
 
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        magnetometer = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+
+        if (accelerometer != null && magnetometer != null) {
+            sensorManager.registerListener(mySensorEventListener, accelerometer, SensorManager.SENSOR_DELAY_FASTEST);
+            sensorManager.registerListener(mySensorEventListener, magnetometer, SensorManager.SENSOR_DELAY_FASTEST);
+
+        }
+        else {
+            Toast.makeText(this, "Sensors not found", Toast.LENGTH_LONG).show();
+        }
+            textDirection = (TextView) findViewById(R.id.textHeading);
     }
 
     private void initListButton() {
@@ -146,7 +171,6 @@ public class ContactMapActivity extends AppCompatActivity
             }
         });
     }
-
 
     @Override
     public void onPause() {
@@ -274,6 +298,7 @@ public class ContactMapActivity extends AppCompatActivity
 
             t1_Title.setText(currentContact.getContactName());
             t2_Address.setText(address);
+//            Exercise 7.4 Add phone number
             t3_HomePhone.setText("Home: " + currentContact.getPhoneNumber());
             t4_CellPhone.setText("Cell: " + currentContact.getCellNumber());
 
@@ -324,7 +349,7 @@ public class ContactMapActivity extends AppCompatActivity
                 LatLng point = new LatLng(addresses.get(0).getLatitude(), addresses.get(0).getLongitude());
                 builder.include(point);
 
-
+//              Exercise 7.3 Add custom marker icon
                 gMap.addMarker(new MarkerOptions().position(point).icon(BitmapDescriptorFactory.fromResource(R.drawable.icons8_marker_40)));
 
 //            Should Fix:
@@ -359,6 +384,7 @@ public class ContactMapActivity extends AppCompatActivity
                 final LatLng point = new LatLng(addresses.get(0).getLatitude(),
                         addresses.get(0).getLongitude());
 
+//              Exercise 7.3 Add custom marker icon
                 gMap.addMarker(new MarkerOptions().position(point).icon(BitmapDescriptorFactory.fromResource(R.drawable.icons8_marker_40)));
                 gMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
                 gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(point, 16));
@@ -455,6 +481,48 @@ public class ContactMapActivity extends AppCompatActivity
              }
         });
     }
+
+    private SensorEventListener mySensorEventListener = new SensorEventListener() {
+
+        float[] accelerometerValues;
+        float[] magneticValues;
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int i) { }
+
+        @Override
+        public void onSensorChanged(SensorEvent sensorEvent) {
+            if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+                accelerometerValues = sensorEvent.values;
+            }
+            if (sensorEvent.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
+                magneticValues = sensorEvent.values;
+            }
+            if (accelerometerValues != null & magneticValues != null) {
+
+                float R[] = new float[9];
+                float I[] = new float[9];
+
+                boolean success = SensorManager.getRotationMatrix(R, I, accelerometerValues, magneticValues);
+
+                if (success) {
+                    float orientation[] = new float[3];
+                    SensorManager.getOrientation(R, orientation);
+
+                    float azimut = (float) Math.toDegrees(orientation[0]);
+                    if (azimut < 0.0f) { azimut+= 360.0f;}
+                    String direction;
+                    if (azimut >= 315 || azimut < 45) { direction = "N"; }
+                    else if (azimut >= 225 && azimut < 315) { direction = "W"; }
+                    else if (azimut >= 135 && azimut < 225) { direction = "S"; }
+                    else { direction = "E"; }
+                    textDirection.setText(direction);
+                }
+            }
+        }
+
+
+    };
 
 
 }

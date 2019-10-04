@@ -158,6 +158,7 @@ public class ContactCoordinateActivity extends AppCompatActivity {
         }
     }
 
+//    Exercise 7.1 and 7.2
     private void startLocationUpdates() {
         if (Build.VERSION.SDK_INT >= 23 &&
                 ContextCompat.checkSelfPermission(getBaseContext(),
@@ -275,6 +276,7 @@ public class ContactCoordinateActivity extends AppCompatActivity {
         }
     }
 
+//    Exercise 7.2
     private boolean isBetterLocation(Location location) {
         boolean isBetter = false;
         if (currentBestLocation == null) {
