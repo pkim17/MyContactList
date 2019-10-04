@@ -46,6 +46,7 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
     private Contact currentContact;
     final int PERMISSION_REQUEST_PHONE = 102;
     final int PERMISSION_REQUEST_CAMERA = 103;
+    final int PERMISSION_REQUEST_SMS = 104;
     final int CAMERA_REQUEST = 1888;
     private SensorManager sensorManager;
     private Sensor proximity;
@@ -73,8 +74,9 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
 
         initBestFriendCheckBox();
         setForEditing(false);
-        initCallFunction();
+//        initCallFunction();
         initImageButton();
+        initTextFunction();
 
         //Exercise 8.1 Proximity Sensor
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -520,63 +522,77 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
 
     }
 
-    private void initCallFunction() {
+    //Disabled Call function to enable Text function for Exercise 8.2
+//    private void initCallFunction() {
+//
+//        EditText editPhone = (EditText) findViewById(R.id.editHome);
+//        editPhone.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View arg0) {
+//                checkPhonePermission(currentContact.getPhoneNumber());
+//                return false;
+//            }
+//        });
+//
+//        EditText editCell = (EditText) findViewById(R.id.editCell);
+//        editCell.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View arg0) {
+//                checkPhonePermission(currentContact.getCellNumber());
+//                return false;
+//            }
+//        });
+//
+//    }
+//
+//    private void checkPhonePermission(String phoneNumber) {
+//        if (Build.VERSION.SDK_INT >= 23) {
+//            if (ContextCompat.checkSelfPermission(ContactActivity.this,
+//                    android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+//
+//                if (ActivityCompat.shouldShowRequestPermissionRationale(ContactActivity.this,
+//                        android.Manifest.permission.CALL_PHONE)) {
+//
+//                    Snackbar.make(findViewById(R.id.activity_contact),
+//                        "MyContactList requires this permission to place a call from the app.",
+//                        Snackbar.LENGTH_INDEFINITE).setAction("OK", new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            ActivityCompat.requestPermissions(
+//                                    ContactActivity.this,
+//                                    new String[]{android.Manifest.permission.CALL_PHONE},
+//                                    PERMISSION_REQUEST_PHONE);
+//                        }
+//                    })
+//                      .show();
+//                }
+//                else {
+//                    ActivityCompat.requestPermissions(ContactActivity.this,
+//                            new String[]{android.Manifest.permission.CALL_PHONE},
+//                            PERMISSION_REQUEST_PHONE);
+//                }
+//            }
+//            else {
+//                callContact(phoneNumber);
+//            }
+//        }
+//        else {
+//            callContact(phoneNumber);
+//        }
+//    }
 
-        EditText editPhone = (EditText) findViewById(R.id.editHome);
-        editPhone.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View arg0) {
-                checkPhonePermission(currentContact.getPhoneNumber());
-                return false;
-            }
-        });
-
-        EditText editCell = (EditText) findViewById(R.id.editCell);
-        editCell.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View arg0) {
-                checkPhonePermission(currentContact.getCellNumber());
-                return false;
-            }
-        });
-
-    }
-
-    private void checkPhonePermission(String phoneNumber) {
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (ContextCompat.checkSelfPermission(ContactActivity.this,
-                    android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-
-                if (ActivityCompat.shouldShowRequestPermissionRationale(ContactActivity.this,
-                        android.Manifest.permission.CALL_PHONE)) {
-
-                    Snackbar.make(findViewById(R.id.activity_contact),
-                        "MyContactList requires this permission to place a call from the app.",
-                        Snackbar.LENGTH_INDEFINITE).setAction("OK", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            ActivityCompat.requestPermissions(
-                                    ContactActivity.this,
-                                    new String[]{android.Manifest.permission.CALL_PHONE},
-                                    PERMISSION_REQUEST_PHONE);
-                        }
-                    })
-                      .show();
-                }
-                else {
-                    ActivityCompat.requestPermissions(ContactActivity.this,
-                            new String[]{android.Manifest.permission.CALL_PHONE},
-                            PERMISSION_REQUEST_PHONE);
-                }
-            }
-            else {
-                callContact(phoneNumber);
-            }
-        }
-        else {
-            callContact(phoneNumber);
-        }
-    }
+    //    private void callContact(String phoneNumber) {
+//        Intent intent = new Intent(Intent.ACTION_CALL);
+//        intent.setData(Uri.parse("tel:" + phoneNumber));
+//        if ( Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(getBaseContext(),
+//                android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+//
+//            return;
+//        }
+//        else {
+//            startActivity(intent);
+//        }
+//    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
@@ -602,18 +618,88 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
                 }
                 return;
             }
+            case PERMISSION_REQUEST_SMS: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(ContactActivity.this,
+                            "You may now text from this app.", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Toast.makeText(ContactActivity.this,
+                            "You will not be able to text from this app", Toast.LENGTH_LONG).show();
+                }
+            }
         }
 
     }
 
-    private void callContact(String phoneNumber) {
-        Intent intent = new Intent(Intent.ACTION_CALL);
-        intent.setData(Uri.parse("tel:" + phoneNumber));
-        if ( Build.VERSION.SDK_INT >= 23 &&
-                ContextCompat.checkSelfPermission(getBaseContext(),
-                android.Manifest.permission.CALL_PHONE) !=
-                PackageManager.PERMISSION_GRANTED) {
 
+
+    // Exercise 8.2 Send SMS instead of Call when long-clicked
+    private void initTextFunction() {
+
+        EditText editPhone = (EditText) findViewById(R.id.editHome);
+        editPhone.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View arg0) {
+                checkTextPermission(currentContact.getPhoneNumber());
+                return false;
+            }
+        });
+
+        EditText editCell = (EditText) findViewById(R.id.editCell);
+        editCell.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View arg0) {
+                checkTextPermission(currentContact.getCellNumber());
+                return false;
+            }
+        });
+
+    }
+
+    // Exercise 8.2 Send SMS instead of Call when long-clicked
+    private void checkTextPermission(String phoneNumber) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (ContextCompat.checkSelfPermission(ContactActivity.this,
+                    Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+
+                if (ActivityCompat.shouldShowRequestPermissionRationale(ContactActivity.this,
+                        Manifest.permission.SEND_SMS)) {
+
+                    Snackbar.make(findViewById(R.id.activity_contact),
+                            "MyContactList requires this permission to send a text from the app.",
+                            Snackbar.LENGTH_INDEFINITE).setAction("OK", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            ActivityCompat.requestPermissions(
+                                    ContactActivity.this,
+                                    new String[]{Manifest.permission.SEND_SMS},
+                                    PERMISSION_REQUEST_SMS);
+                        }
+                    })
+                            .show();
+                }
+                else {
+                    ActivityCompat.requestPermissions(ContactActivity.this,
+                            new String[]{Manifest.permission.SEND_SMS},
+                            PERMISSION_REQUEST_SMS);
+                }
+            }
+            else {
+                sendText(phoneNumber);
+            }
+        }
+        else {
+            sendText(phoneNumber);
+        }
+    }
+
+    // Exercise 8.2 Send SMS instead of Call when long-clicked
+    private void sendText(String phoneNumber) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("sms:" + phoneNumber));
+        if ( Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(getBaseContext(),
+        Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
         else {
