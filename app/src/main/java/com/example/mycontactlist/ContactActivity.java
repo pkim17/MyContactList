@@ -11,7 +11,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.appcompat.app.AppCompatActivity;;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.media.Image;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,6 +31,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,13 +41,14 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Calendar;
 
-public class ContactActivity extends AppCompatActivity implements DatePickerDialog.SaveDateListener {
+public class ContactActivity extends AppCompatActivity implements DatePickerDialog.SaveDateListener, SensorEventListener {
 
     private Contact currentContact;
     final int PERMISSION_REQUEST_PHONE = 102;
     final int PERMISSION_REQUEST_CAMERA = 103;
     final int CAMERA_REQUEST = 1888;
-
+    private SensorManager sensorManager;
+    private Sensor proximity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,12 +76,22 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
         initCallFunction();
         initImageButton();
 
+        //Exercise 8.1 Proximity Sensor
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        proximity = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sensorManager.unregisterListener(this);
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        sensorManager.registerListener(this, proximity, SensorManager.SENSOR_DELAY_NORMAL);
 
 
         String setColor = getSharedPreferences("MyContactListPreferences", Context.MODE_PRIVATE)
@@ -93,7 +108,11 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
 
         }
 
+
+
+
     }
+
 
 
 
@@ -659,5 +678,24 @@ public class ContactActivity extends AppCompatActivity implements DatePickerDial
         }
     }
 
+    // Exercise 8.1 Proximity Sensor
+    // Displays Green(ON) icon when proximity detected, Black(off)
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        ImageView imageProximity = (ImageView) findViewById(R.id.lightProximity);
 
+        if (sensorEvent.sensor.getType() == Sensor.TYPE_PROXIMITY) {
+            if (sensorEvent.values[0] == 0) {
+                imageProximity.setImageResource(R.drawable.proximity_sensor_on_40);
+            }
+            else {
+                imageProximity.setImageResource(R.drawable.proximity_sensor_off_40);
+            }
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+        // Do something here if sensor accuracy changes.
+    }
 }
